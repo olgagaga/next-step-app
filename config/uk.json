@@ -1,0 +1,36 @@
+{
+  "country": "UK",
+  "name": "United Kingdom",
+  "updates": [
+    {
+      "label": "Gov UK News",
+      "url": "https://www.gov.uk/search/news-and-communications",
+      "type": "html",
+      "selector": "",
+      "link_selector": "",
+      "title_selector": "",
+      "date_selector": ""
+    },
+    {
+        "label": "Immigration Rules Updates",
+        "url": "https://www.gov.uk/guidance/immigration-rules/updates",
+        "type": "html",
+        "selector": "",
+        "link_selector": "",
+        "title_selector": "",
+        "date_selector": ""
+    },
+    {
+        "label": "News from UK Parliament",
+        "url": "https://www.parliament.uk/business/news/",
+        "type": "html",
+        "selector": "",
+        "link_selector": "",
+        "title_selector": "",
+        "date_selector": ""
+    }
+  ],
+  "summary":[
+    "pages for official static summary. should be monitored for updates. like years for citizenship, residency, etc."
+  ]
+}
