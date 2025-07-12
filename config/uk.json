@@ -3,34 +3,37 @@
   "name": "United Kingdom",
   "updates": [
     {
-      "label": "Gov UK News",
-      "url": "https://www.gov.uk/search/news-and-communications",
+      "label": "Gov UK News (Entering and Staying in the UK topic)",
+      "url": "https://www.gov.uk/search/news-and-communications?level_one_taxon=ba3a9702-da22-487f-86c1-8334a730e559&order=updated-newest",
+      "type": "html",
+      "selector": "gem-c-document-list__item",
+      "link_selector": "govuk-link gem-c-force-print-link-styles govuk-link--no-underline",
+      "title_selector": "gem-c-document-list__item-title",
+      "subtitle_selector": "gem-c-document-list__item-description",
+      "date_selector": "gem-c-document-list__item-metadata"
+    },
+    {
+      "label": "News from UK Parliament",
+      "url": "https://www.parliament.uk/business/news/",
       "type": "html",
       "selector": "",
       "link_selector": "",
       "title_selector": "",
+      "subtitle_selector": "",
       "date_selector": ""
     },
     {
-        "label": "Immigration Rules Updates",
-        "url": "https://www.gov.uk/guidance/immigration-rules/updates",
-        "type": "html",
-        "selector": "",
-        "link_selector": "",
-        "title_selector": "",
-        "date_selector": ""
-    },
-    {
-        "label": "News from UK Parliament",
-        "url": "https://www.parliament.uk/business/news/",
-        "type": "html",
-        "selector": "",
-        "link_selector": "",
-        "title_selector": "",
-        "date_selector": ""
+      "label": "Immigration Rules Updates",
+      "url": "https://www.gov.uk/guidance/immigration-rules/updates",
+      "type": "html",
+      "selector": "govuk-accordion__section",
+      "link_selector": "govuk-link",
+      "title_selector": "govuk-link",
+      "subtitle_selector": "govuk-body",
+      "date_selector": "govuk-accordion__section-heading-text-focus"
     }
   ],
   "summary":[
-    "pages for official static summary. should be monitored for updates. like years for citizenship, residency, etc."
+    "TODO: pages for official static summary. should be monitored for updates. like years for citizenship, residency, etc."
   ]
 }
