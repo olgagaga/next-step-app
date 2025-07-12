@@ -1,0 +1,173 @@
+.country-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 40px;
+}
+
+.back-button {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.back-button:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.country-info {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.country-flag-large {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.country-info h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.country-info .country-description {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.updates-section {
+  margin-top: 40px;
+}
+
+.updates-section h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.update-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.update-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -1px rgba(0, 0, 0, 0.1);
+}
+
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+
+.update-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  flex: 1;
+}
+
+.update-date {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.update-card p {
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.error-message {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.error-message h2 {
+  font-size: 1.75rem;
+  color: #ef4444;
+  margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .country-page {
+    padding: 20px 15px;
+  }
+  
+  .country-info {
+    padding: 30px 15px;
+  }
+  
+  .country-flag-large {
+    font-size: 3rem;
+  }
+  
+  .country-info h1 {
+    font-size: 2rem;
+  }
+  
+  .update-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .update-date {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .country-info h1 {
+    font-size: 1.75rem;
+  }
+  
+  .updates-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .update-card {
+    padding: 20px;
+  }
+  
+  .update-header h3 {
+    font-size: 1.1rem;
+  }
+} 
