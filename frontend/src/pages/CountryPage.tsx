@@ -8,9 +8,9 @@ const CountryPage: React.FC = () => {
 
   // Sample country data - you can expand this with real data later
   const countryData = {
-    canada: {
-      name: 'Canada',
-      flag: '🇨🇦',
+    uk: {
+      name: 'United Kingdom',
+      flag: '🇬🇧',
       description: 'Latest immigration updates and policy changes',
       updates: [
         {
