@@ -39,7 +39,7 @@
 }
 
 .country-card {
-  grid-column: span 3; /* 4 columns width on large screens */
+  grid-column: span 4; /* 4 columns width on large screens */
 }
 
 /* Responsive design */

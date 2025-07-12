@@ -1,13 +1,15 @@
 .country-card {
   background: white;
   border-radius: 16px;
-  padding: 24px;
+  overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid #e2e8f0;
   position: relative;
-  overflow: hidden;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
 }
 
 .country-card::before {
@@ -20,6 +22,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   transform: scaleX(0);
   transition: transform 0.3s ease;
+  z-index: 2;
 }
 
 .country-card:hover {
@@ -32,42 +35,152 @@
   transform: scaleX(1);
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  gap: 12px;
+/* Banner Section - One third of the card */
+.card-banner {
+  position: relative;
+  height: 33.33%;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.country-card:hover .banner-image {
+  transform: scale(1.05);
+}
+
+/* Flag Overlay - Upper left corner */
+.flag-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
 }
 
 .country-flag {
-  font-size: 2.5rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  padding: 4px;
+  display: block;
+}
+
+/* Name Overlay - Bottom right corner */
+.name-overlay {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 1;
 }
 
 .country-name {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+/* Content Section - Two thirds of the card */
+.card-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* .country-description {
+  color: #64748b;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin: 0;
+  flex-shrink: 0;
+} */
+
+/* Updates Section */
+
+
+.updates-title {
+  font-size: 0.9rem;
   font-weight: 600;
   color: #1e293b;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.updates-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.country-description {
-  color: #64748b;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
+.update-item {
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.4;
+  position: relative;
+  padding-left: 16px;
 }
 
+.update-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Tags Section */
+.tags-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.tag {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Footer */
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 16px;
+  padding-top: 12px;
   border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
 }
 
 .last-update {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #94a3b8;
   font-weight: 500;
 }
@@ -75,30 +188,55 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .country-card {
-    padding: 20px;
+    height: auto;
+  }
+  
+  .card-content {
+    padding: 16px;
+    gap: 12px;
   }
   
   .country-flag {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
   
   .country-name {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+  }
+  
+  .updates-list {
+    gap: 4px;
+  }
+  
+  .update-item {
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
   .country-card {
-    padding: 16px;
+    height: auto;
   }
   
-  .card-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
+  .card-content {
+    padding: 12px;
+    gap: 10px;
   }
   
   .country-flag {
-    font-size: 1.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .country-name {
+    font-size: 1rem;
+  }
+  
+  .tags-section {
+    gap: 4px;
+  }
+  
+  .tag {
+    font-size: 0.7rem;
+    padding: 3px 6px;
   }
 } 
