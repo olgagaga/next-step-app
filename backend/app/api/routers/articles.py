@@ -14,6 +14,75 @@ from ..schemas import Article as ArticleSchema, ArticleList
 
 router = APIRouter()
 
+@router.get("/articles/recent", response_model=List[ArticleSchema])
+async def get_recent_articles(
+    limit: int = Query(10, ge=1, le=50, description="Number of recent articles"),
+    db: Session = Depends(get_db)
+):
+    """
+    Get the most recent articles.
+    
+    Args:
+        limit: Number of articles to return (max 50)
+        db: Database session
+    
+    Returns:
+        List[Article]: List of recent articles
+    """
+    articles = db.query(Article).order_by(
+        desc(Article.date_fetched)
+    ).limit(limit).all()
+    return [ArticleSchema.model_validate(article.__dict__) for article in articles]
+
+@router.get("/articles/today", response_model=List[ArticleSchema])
+async def get_todays_articles(db: Session = Depends(get_db)):
+    """
+    Get articles published today.
+    
+    Args:
+        db: Database session
+    
+    Returns:
+        List[Article]: List of today's articles
+    """
+    today = datetime.now().date()
+    articles = db.query(Article).filter(
+        Article.date_published == today
+    ).order_by(desc(Article.date_fetched)).all()
+    return [ArticleSchema.model_validate(article.__dict__) for article in articles]
+
+@router.get("/articles/stats")
+async def get_article_stats(db: Session = Depends(get_db)):
+    """
+    Get statistics about articles.
+    
+    Args:
+        db: Database session
+    
+    Returns:
+        dict: Article statistics
+    """
+    total_articles = db.query(Article).count()
+    today = datetime.now().date()
+    todays_articles = db.query(Article).filter(
+        Article.date_published == today
+    ).count()
+    
+    # Articles by source
+    source_stats = db.query(
+        Source.label,
+        func.count(Article.id).label('count')
+    ).join(Article).group_by(Source.label).all()
+    
+    return {
+        "total_articles": total_articles,
+        "todays_articles": todays_articles,
+        "articles_by_source": [
+            {"source": label, "count": count} 
+            for label, count in source_stats
+        ]
+    }
+
 @router.get("/articles", response_model=ArticleList)
 async def get_articles(
     page: int = Query(1, ge=1, description="Page number"),
@@ -88,73 +157,4 @@ async def get_article(article_id: int, db: Session = Depends(get_db)):
     article = db.query(Article).filter(Article.id == article_id).first()
     if not article:
         raise HTTPException(status_code=404, detail="Article not found")
-    return article
-
-@router.get("/articles/recent", response_model=List[ArticleSchema])
-async def get_recent_articles(
-    limit: int = Query(10, ge=1, le=50, description="Number of recent articles"),
-    db: Session = Depends(get_db)
-):
-    """
-    Get the most recent articles.
-    
-    Args:
-        limit: Number of articles to return (max 50)
-        db: Database session
-    
-    Returns:
-        List[Article]: List of recent articles
-    """
-    articles = db.query(Article).order_by(
-        desc(Article.date_fetched)
-    ).limit(limit).all()
-    return articles
-
-@router.get("/articles/today", response_model=List[ArticleSchema])
-async def get_todays_articles(db: Session = Depends(get_db)):
-    """
-    Get articles published today.
-    
-    Args:
-        db: Database session
-    
-    Returns:
-        List[Article]: List of today's articles
-    """
-    today = datetime.now().date()
-    articles = db.query(Article).filter(
-        Article.date_published == today
-    ).order_by(desc(Article.date_fetched)).all()
-    return articles
-
-@router.get("/articles/stats")
-async def get_article_stats(db: Session = Depends(get_db)):
-    """
-    Get statistics about articles.
-    
-    Args:
-        db: Database session
-    
-    Returns:
-        dict: Article statistics
-    """
-    total_articles = db.query(Article).count()
-    today = datetime.now().date()
-    todays_articles = db.query(Article).filter(
-        Article.date_published == today
-    ).count()
-    
-    # Articles by source
-    source_stats = db.query(
-        Source.label,
-        func.count(Article.id).label('count')
-    ).join(Article).group_by(Source.label).all()
-    
-    return {
-        "total_articles": total_articles,
-        "todays_articles": todays_articles,
-        "articles_by_source": [
-            {"source": label, "count": count} 
-            for label, count in source_stats
-        ]
-    } 
+    return article 

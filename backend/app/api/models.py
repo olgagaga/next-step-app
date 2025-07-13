@@ -42,7 +42,7 @@ class Article(Base):
     article_url = Column(String, unique=True, nullable=False)
     title = Column(String, nullable=False)
     subtitle = Column(Text)
-    date_published = Column(Date)
+    date_published = Column(DateTime)  # Changed from Date to DateTime
     date_fetched = Column(DateTime, default=datetime.utcnow)
     content = Column(Text)
     

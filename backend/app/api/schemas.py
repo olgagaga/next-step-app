@@ -33,7 +33,7 @@ class Source(SourceBase):
     last_scraped: Optional[datetime] = None
     
     class Config:
-        from_attributes = True  # Allows conversion from SQLAlchemy models
+        from_orm = True  # Allows conversion from SQLAlchemy models
 
 class Article(ArticleBase):
     """Schema for article responses"""
@@ -44,7 +44,7 @@ class Article(ArticleBase):
     source: Optional[Source] = None
     
     class Config:
-        from_attributes = True
+        from_orm = True
 
 # Request schemas
 class SourceCreate(SourceBase):
