@@ -3,13 +3,14 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from datetime import datetime, date, timedelta
+from pathlib import Path
 import json
 import re
 import sqlite3
 import argparse
 
 # Database configuration
-DB_PATH = './data/scraper.db'
+DB_PATH = str(Path(__file__).parent.parent / "data" / "scraper.db")
 
 def initialize_db():
     """Initialize database if it doesn't exist"""
@@ -102,7 +103,8 @@ def parse_date(date_str):
 def fetch_and_store(days_back=3):
     """Fetch articles from the last N days and store in database"""
     # Load config
-    with open('config/uk.json', 'r') as f:
+    config_path = Path(__file__).parent.parent / 'config' / 'uk.json'
+    with open(config_path, 'r') as f:
         CONFIG = json.load(f)
     
     # Initialize database

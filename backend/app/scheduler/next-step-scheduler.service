@@ -1,0 +1,16 @@
+[Unit]
+Description=Next Step App Scraping Scheduler
+After=network.target
+
+[Service]
+Type=simple
+User=olga
+WorkingDirectory=/home/olga/myworld/Projects/next-step-app/backend/app
+ExecStart=/usr/bin/python3 scheduler/manage_scheduler.py start --config default
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target 

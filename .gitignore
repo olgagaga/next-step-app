@@ -21,3 +21,4 @@ coverage
 
 scrape_uk_1.html
 scrape_uk_3.html
+__pycache__
