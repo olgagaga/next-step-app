@@ -52,7 +52,7 @@ const CountryCard: React.FC<CountryCardProps> = ({
           <ul className="updates-list">
             {updates.map((update, index) => (
               <li key={index} className="update-item">
-                {update}
+                {update.slice(0, 85)}...
               </li>
             ))}
           </ul>
